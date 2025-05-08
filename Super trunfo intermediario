@@ -1,0 +1,137 @@
+#include <stdio.h>
+
+int main() {
+    // Dados das cartas
+    char carta1_nome[] = "Pernambuco";
+    int carta1_populacao = 9616621;
+    float carta1_area = 98311.616f;
+    float carta1_pib = 187.5f;
+    int carta1_pontos_turisticos = 15;
+    float carta1_densidade = carta1_populacao / carta1_area;
+
+    char carta2_nome[] = "Joao Pessoa";
+    int carta2_populacao = 817511;
+    float carta2_area = 211.475f;
+    float carta2_pib = 28.3f;
+    int carta2_pontos_turisticos = 8;
+    float carta2_densidade = carta2_populacao / carta2_area;
+
+    int opcao;
+    int resultado;
+    int continuar = 1; // Flag para controlar o loop
+
+    while(continuar) {
+        printf("\n=== SUPER TRUNFO ===\n");
+        printf("1 - Comparar por Populacao\n");
+        printf("2 - Comparar por Area\n");
+        printf("3 - Comparar por PIB\n");
+        printf("4 - Comparar por Pontos Turisticos\n");
+        printf("5 - Comparar por Densidade Demografica\n");
+        printf("0 - Sair\n");
+        printf("Escolha o atributo para comparar: ");
+        scanf("%d", &opcao);
+
+        int opcao_valida = 1;
+        resultado = 0;
+
+        if(opcao == 0) {
+            continuar = 0;
+            printf("Jogo encerrado!\n");
+        } 
+        else if(opcao == 1) {
+            printf("\n=== COMPARACAO ===\n");
+            printf("Carta 1: %s\n", carta1_nome);
+            printf("Carta 2: %s\n", carta2_nome);
+            printf("Atributo: Populacao\n");
+            printf("%s: %d habitantes\n", carta1_nome, carta1_populacao);
+            printf("%s: %d habitantes\n", carta2_nome, carta2_populacao);
+            
+            if(carta1_populacao > carta2_populacao) {
+                resultado = 1;
+            } 
+            else if(carta2_populacao > carta1_populacao) {
+                resultado = 2;
+            }
+        }
+        else if(opcao == 2) {
+            printf("\n=== COMPARACAO ===\n");
+            printf("Carta 1: %s\n", carta1_nome);
+            printf("Carta 2: %s\n", carta2_nome);
+            printf("Atributo: Area\n");
+            printf("%s: %.2f km²\n", carta1_nome, carta1_area);
+            printf("%s: %.2f km²\n", carta2_nome, carta2_area);
+            
+            if(carta1_area > carta2_area) {
+                resultado = 1;
+            } 
+            else if(carta2_area > carta1_area) {
+                resultado = 2;
+            }
+        }
+        else if(opcao == 3) {
+            printf("\n=== COMPARACAO ===\n");
+            printf("Carta 1: %s\n", carta1_nome);
+            printf("Carta 2: %s\n", carta2_nome);
+            printf("Atributo: PIB\n");
+            printf("%s: R$ %.1f bilhoes\n", carta1_nome, carta1_pib);
+            printf("%s: R$ %.1f bilhoes\n", carta2_nome, carta2_pib);
+            
+            if(carta1_pib > carta2_pib) {
+                resultado = 1;
+            } 
+            else if(carta2_pib > carta1_pib) {
+                resultado = 2;
+            }
+        }
+        else if(opcao == 4) {
+            printf("\n=== COMPARACAO ===\n");
+            printf("Carta 1: %s\n", carta1_nome);
+            printf("Carta 2: %s\n", carta2_nome);
+            printf("Atributo: Pontos Turisticos\n");
+            printf("%s: %d pontos\n", carta1_nome, carta1_pontos_turisticos);
+            printf("%s: %d pontos\n", carta2_nome, carta2_pontos_turisticos);
+            
+            if(carta1_pontos_turisticos > carta2_pontos_turisticos) {
+                resultado = 1;
+            } 
+            else if(carta2_pontos_turisticos > carta1_pontos_turisticos) {
+                resultado = 2;
+            }
+        }
+        else if(opcao == 5) {
+            printf("\n=== COMPARACAO ===\n");
+            printf("Carta 1: %s\n", carta1_nome);
+            printf("Carta 2: %s\n", carta2_nome);
+            printf("Atributo: Densidade Demografica\n");
+            printf("%s: %.2f hab/km²\n", carta1_nome, carta1_densidade);
+            printf("%s: %.2f hab/km²\n", carta2_nome, carta2_densidade);
+            
+            // Regra invertida
+            if(carta1_densidade < carta2_densidade) {
+                resultado = 1;
+            } 
+            else if(carta2_densidade < carta1_densidade) {
+                resultado = 2;
+            }
+        }
+        else {
+            opcao_valida = 0;
+            printf("Opcao invalida! Tente novamente.\n");
+        }
+
+        if(continuar && opcao_valida && opcao != 0) {
+            printf("\n=== RESULTADO ===\n");
+            if(resultado == 1) {
+                printf("%s venceu!\n", carta1_nome);
+            } 
+            else if(resultado == 2) {
+                printf("%s venceu!\n", carta2_nome);
+            } 
+            else {
+                printf("Empate!\n");
+            }
+        }
+    }
+
+    return 0;
+}
